@@ -7,5 +7,17 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 
-CSV.foreach(File.join("sample_data", "user.csv")) do |row|
+SAMPLE_DATA = File.join("db", "sample_data")
+
+CSV.foreach(File.join(SAMPLE_DATA, "user.csv"), headers: true) do |row|
+  User.create(email: row["Email"])
+end
+
+@users = {  }
+def get_user(email)
+  @users[email] ||= User.where(email: email).first
+end
+
+CSV.foreach(File.join(SAMPLE_DATA, "workout.csv"), headers: true) do |row|
+  Workout.create(user: get_user(row["Email"]), workout_date: row["Workout Date"], workout_duration: row["Workout Duration"])
 end
