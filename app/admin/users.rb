@@ -25,3 +25,22 @@ ActiveAdmin.register User do
     f.actions
   end
 end
+
+ActiveAdmin.register User, namespace: :profile do
+  filter :email
+  index do 
+    column "User" do |user|
+      link_to user.email, profile_user_workouts_path(user)
+    end
+  end
+
+  show do
+    panel "Workouts" do
+      table_for user.workouts do
+        column :workout_date
+        column :workout_duration
+      end
+    end
+  end
+end
+

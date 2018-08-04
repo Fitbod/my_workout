@@ -32,9 +32,9 @@ class Ability
     if user.admin?
       can :manage, :all
     else
-      can :create, Workout
-      can :update, Workout, user_id: user.id
+      can :manage, Workout, user_id: user.id
       can :read, Workout
+      can :read, User
       can :read, ActiveAdmin::Page, name: "Dashboard",
           namespace_name: "profile"
     end
