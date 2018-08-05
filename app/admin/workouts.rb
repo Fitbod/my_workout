@@ -21,7 +21,7 @@ ActiveAdmin.register Workout, namespace: :profile do
 
   form do |f|
     f.semantic_errors # shows errors on :base
-    f.inputs do 
+    f.inputs do
       f.input :workout_duration
       f.input :workout_date, as: :datepicker,
               datepicker_options: {
