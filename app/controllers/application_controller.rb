@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
         if (resource = User.find_by_email(username)) && resource.valid_password?(password)
           sign_in :user, resource
         else
-          redirect_to(user_login_path, status: 401)
+          redirect_to(new_user_session_path, status: 401)
         end
       end
     else

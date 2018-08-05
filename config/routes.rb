@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   scope "/api/v1" do
-    resources :users, module: "profile" do
+    resources :users, module: "api" do
       resources :workouts
     end
   end

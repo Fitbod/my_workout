@@ -41,3 +41,10 @@ ActiveAdmin.register Workout, namespace: :profile do
   end
 end
 
+ActiveAdmin.register Workout, namespace: :api do
+  permit_params :workout_duration, :workout_date
+  belongs_to :user
+  controller do
+    skip_before_action :verify_authenticity_token
+  end
+end

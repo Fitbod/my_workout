@@ -28,7 +28,7 @@ end
 
 ActiveAdmin.register User, namespace: :profile do
   filter :email
-  index do 
+  index do
     column "User" do |user|
       link_to user.email, profile_user_workouts_path(user)
     end
@@ -41,6 +41,14 @@ ActiveAdmin.register User, namespace: :profile do
         column :workout_duration
       end
     end
+  end
+end
+
+ActiveAdmin.register User, namespace: :api do
+  filter :email
+
+  controller do
+    skip_before_action :verify_authenticity_token
   end
 end
 
