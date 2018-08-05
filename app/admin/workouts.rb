@@ -43,6 +43,8 @@ end
 
 ActiveAdmin.register Workout, namespace: :api do
   permit_params :workout_duration, :workout_date
+  belongs_to :user
+  # TODO: determine why activeadmin is ignoring the concern
   controller do
     skip_before_action :verify_authenticity_token
     before_action :restrict_content_type
@@ -52,5 +54,4 @@ ActiveAdmin.register Workout, namespace: :api do
       render json: {msg:  'Content-Type must be application/json'}, status: 406 unless request.content_type == 'application/json'
     end
   end
-  belongs_to :user
 end
