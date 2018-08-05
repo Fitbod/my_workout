@@ -3,4 +3,18 @@ class ApplicationController < ActionController::Base
     Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
     # ...
   end
+
+  def authenticate!
+    if request.env['HTTP_AUTHORIZATION'] =~ /^Basic/
+      authenticate_or_request_with_http_basic do |username,password|
+        if (resource = User.find_by_email(username)) && resource.valid_password?(password)
+          sign_in :user, resource
+        else
+          redirect_to(user_login_path, status: 401)
+        end
+      end
+    else
+      authenticate_user!
+    end
+  end
 end

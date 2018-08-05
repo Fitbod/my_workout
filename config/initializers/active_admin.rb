@@ -48,7 +48,7 @@ ActiveAdmin.setup do |config|
   # configuration.
 
   config.namespace :profile do |user|
-    user.authentication_method = :authenticate_user!
+    user.authentication_method = :authenticate!
     user.current_user_method = :current_user
     user.logout_link_path = :destroy_user_session_path
     user.root_to = 'dashboard#index'
