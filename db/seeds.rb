@@ -5,15 +5,20 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-DEFAULT_PASSWORD="password"
-AdminUser.create!(email: 'admin@example.com', password: DEFAULT_PASSWORD, password_confirmation: 'password') if Rails.env.development?
+DEFAULT_PASSWORD=
+  AdminUser.create!(email: 'admin@example.com',
+                    password: Rails.application.credentials.admin_password,
+                    password_confirmation: Rails.application.credentials.admin_password)
 
 SAMPLE_DATA = File.join("db", "sample_data")
 
 users = {  }
 CSV.foreach(File.join(SAMPLE_DATA, "user.csv"), headers: true) do |row|
   email = row["Email"]
-  users[email] ||= User.create!(email: email, password: DEFAULT_PASSWORD)
+  users[email] ||=
+    User.create!(email: email,
+                 password: Rails.application.credentials.default_password,
+                 password_confirmation: Rails.application.credentials.default_password)
 end
 
 CSV.foreach(File.join(SAMPLE_DATA, "workout.csv"), headers: true) do |row|
