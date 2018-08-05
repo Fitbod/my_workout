@@ -3,6 +3,28 @@
 The following is a trivial application for storing user workout
 information.
 
+## Getting Started
+Install Gems
+```
+bundle install
+```
+Create Databases
+```
+rake db:create
+```
+Migrate Databases
+```
+rake db:migrate
+```
+Seed the Database
+```
+rake db:seed
+```
+Run the Server
+```
+rails s
+```
+
 ## Models
 - User
 - Workout
