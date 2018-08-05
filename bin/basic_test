@@ -1,0 +1,13 @@
+#!/bin/bash
+
+request () {
+    curl -i \
+         -H 'Accept:application/json' \
+         -H 'Content-Type: application/json' \
+         -u user1@fitbod.me:password \
+         $@
+}
+
+request http://localhost:3000/api/v1/users/1/workouts
+request -X POST http://localhost:3000/api/v1/users/1/workouts -d @db/sample_data/sample_create.json
+
