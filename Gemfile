@@ -32,6 +32,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'activeadmin'
+gem 'arctic_admin'
+
 gem 'devise'
 gem 'cancan'
 
