@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'activeadmin'
 gem 'arctic_admin'
+gem 'formadmin'
 
 gem 'devise'
 gem 'cancan'

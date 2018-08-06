@@ -112,6 +112,8 @@ GEM
     ffi (1.9.25)
     font-awesome-rails (4.7.0.4)
       railties (>= 3.2, < 6.0)
+    formadmin (0.2.1)
+      activeadmin
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
@@ -310,6 +312,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   factory_bot_rails
+  formadmin
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   pg
