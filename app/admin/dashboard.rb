@@ -40,15 +40,15 @@ ActiveAdmin.register_page "Dashboard", namespace: :profile do
   content title: proc{ I18n.t("active_admin.dashboard") } do
     columns do
       column do
-        panel "Recent Workouts" do
+        panel link_to("Manage My Workouts", profile_user_workouts_path(current_user)) do
+          div do
+            "Latest Workouts:"
+          end
           ul do
             current_user.workouts.limit(5).map do |workout|
               li link_to("#{workout.workout_duration} mins",
                          profile_user_workout_path(current_user, workout))
             end
-          end
-          span do
-            link_to("Manage My Workouts", profile_user_workouts_path(current_user))
           end
         end
       end

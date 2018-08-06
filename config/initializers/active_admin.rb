@@ -4,19 +4,19 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "My Workout"
+  config.site_title = "My Workout Turtle"
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
-  # config.site_title_link = "/"
+  config.site_title_link = "/home"
 
   # Set an optional image to be displayed for the header
   # instead of a string (overrides :site_title)
   #
   # Note: Aim for an image that's 21px high so it fits in the header.
   #
-  # config.site_title_image = "logo.png"
+  # config.site_title_image = "/turtle-icon.png"
 
   # == Default Namespace
   #
@@ -189,6 +189,10 @@ ActiveAdmin.setup do |config|
   # pages:
   #   config.meta_tags_for_logged_out_pages = {}
 
+  meta_tags_options = { viewport: 'width=device-width, initial-scale=1' }
+  config.meta_tags = meta_tags_options
+  config.meta_tags_for_logged_out_pages = meta_tags_options
+
   # == Removing Breadcrumbs
   #
   # Breadcrumbs are enabled by default. You can customize them for individual
@@ -247,6 +251,13 @@ ActiveAdmin.setup do |config|
   #     end
   #   end
 
+  config.namespace false do |admin|
+    admin.build_menu :default do |menu|
+      menu.add label: "Admin Website", url: "/admin", priority: 2
+      menu.add label: "User Website", url: "/profile", priority: 3
+    end
+  end
+
   # == Download Links
   #
   # You can disable download links on resource listing pages,
@@ -299,7 +310,6 @@ ActiveAdmin.setup do |config|
   # By default, the footer shows the current Active Admin version. You can
   # override the content of the footer here.
   #
-  # config.footer = 'my custom footer text'
 
   # == Sorting
   #
@@ -308,3 +318,4 @@ ActiveAdmin.setup do |config|
   #
   # config.order_clause = MyOrderClause
 end
+

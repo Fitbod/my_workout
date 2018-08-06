@@ -19,6 +19,20 @@ ActiveAdmin.register Workout, namespace: :profile do
   belongs_to :user
   filter :workout_duration
 
+  config.clear_action_items!
+
+  action_item :new do
+    link_to "New Workout", new_profile_user_workout_path(current_user)
+  end
+
+
+  index do
+    selectable_column
+    column :workout_date
+    column :workout_duration
+    actions
+  end
+
   form do |f|
     f.semantic_errors # shows errors on :base
     f.inputs do
