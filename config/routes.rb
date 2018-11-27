@@ -4,8 +4,11 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   scope "/api/v1" do
+    resources :exercises, module: "api"
     resources :users, module: "api" do
-      resources :workouts
+      resources :workouts do
+        resources :single_sets
+      end
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

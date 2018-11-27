@@ -24,3 +24,21 @@ end
 CSV.foreach(File.join(SAMPLE_DATA, "workout.csv"), headers: true) do |row|
   Workout.create!(user: users[row["Email Address"]], workout_date: row["Workout Date"], workout_duration: row["Workout Duration"])
 end
+
+exercises = {  }
+
+User.all.each do |user|
+  user.workouts.each do |workout|
+    workout_start_time = rand(workout.workout_date.beginning_of_day..(workout.workout_date.end_of_day - 4.hours))
+    performed_at_offset = 0
+    CSV.foreach(File.join(SAMPLE_DATA, "single_sets.csv"), headers: true) do |row|
+      exercise = exercises[row["Exercise"]] ||= Exercise.find_or_create_by(name: row["Exercise"])
+      performed_at_offset += 1
+      SingleSet.create(workout: workout,
+                       reps: row["Reps"],
+                       weight: row["Weight"],
+                       performed_at: workout_start_time + performed_at_offset.minutes)
+      break if workout.workout_duration <= performed_at_offset
+    end
+  end
+end

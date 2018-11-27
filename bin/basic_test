@@ -2,7 +2,8 @@
 
 HOST=${HOST:-https://my-workout-turtle.herokuapp.com}
 USER=user1@fitbod.me
-read -sp 'PASSWORD: ' PASSWORD
+# read -sp 'PASSWORD: ' PASSWORD
+PASSWORD=workfit
 echo
 request () {
     curl -i \
@@ -13,6 +14,8 @@ request () {
     echo
 }
 
+request $HOST/api/v1/exercises
 request $HOST/api/v1/users/1/workouts
 request -X POST $HOST/api/v1/users/1/workouts -d @db/sample_data/sample_create.json
-
+request $HOST/api/v1/users/2/workouts/54/single_sets
+request -X POST $HOST/api/v1/users/1/workouts/1/single_sets -d @db/sample_data/create_single_set.json

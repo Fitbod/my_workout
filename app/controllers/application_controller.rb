@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
     # ...
   end
 
+  rescue_from ActiveRecord::RecordNotFound do
+    render json: {  }, status: :not_found
+  end
+
   def authenticate!
     if request.env['HTTP_AUTHORIZATION'] =~ /^Basic/
       authenticate_or_request_with_http_basic do |username,password|

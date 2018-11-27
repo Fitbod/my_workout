@@ -39,6 +39,9 @@ class Ability
       can :manage, Workout, user_id: user.id
       can :read, Workout
       can :read, User
+      can :read, Exercise
+      can :read, SingleSet
+      can :manage, SingleSet, workout: { user_id: user.id }
       can :read, ActiveAdmin::Page, name: "Dashboard",
           namespace_name: "profile"
     end

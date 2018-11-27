@@ -39,6 +39,22 @@ Process incoming requests from the devices to save and receive workout
 information. The api service handles authentication via Basic Auth. The endpoints are as follows:
 
 ```
+                         exercises GET        /api/v1/exercises(.:format)                                                              api/exercises#index
+                                   POST       /api/v1/exercises(.:format)                                                              api/exercises#create
+                      new_exercise GET        /api/v1/exercises/new(.:format)                                                          api/exercises#new
+                     edit_exercise GET        /api/v1/exercises/:id/edit(.:format)                                                     api/exercises#edit
+                          exercise GET        /api/v1/exercises/:id(.:format)                                                          api/exercises#show
+                                   PATCH      /api/v1/exercises/:id(.:format)                                                          api/exercises#update
+                                   PUT        /api/v1/exercises/:id(.:format)                                                          api/exercises#update
+                                   DELETE     /api/v1/exercises/:id(.:format)                                                          api/exercises#destroy
+          user_workout_single_sets GET        /api/v1/users/:user_id/workouts/:workout_id/single_sets(.:format)                        api/single_sets#index
+                                   POST       /api/v1/users/:user_id/workouts/:workout_id/single_sets(.:format)                        api/single_sets#create
+       new_user_workout_single_set GET        /api/v1/users/:user_id/workouts/:workout_id/single_sets/new(.:format)                    api/single_sets#new
+      edit_user_workout_single_set GET        /api/v1/users/:user_id/workouts/:workout_id/single_sets/:id/edit(.:format)               api/single_sets#edit
+           user_workout_single_set GET        /api/v1/users/:user_id/workouts/:workout_id/single_sets/:id(.:format)                    api/single_sets#show
+                                   PATCH      /api/v1/users/:user_id/workouts/:workout_id/single_sets/:id(.:format)                    api/single_sets#update
+                                   PUT        /api/v1/users/:user_id/workouts/:workout_id/single_sets/:id(.:format)                    api/single_sets#update
+                                   DELETE     /api/v1/users/:user_id/workouts/:workout_id/single_sets/:id(.:format)                    api/single_sets#destroy
                      user_workouts GET        /api/v1/users/:user_id/workouts(.:format)                                                api/workouts#index
                                    POST       /api/v1/users/:user_id/workouts(.:format)                                                api/workouts#create
                   new_user_workout GET        /api/v1/users/:user_id/workouts/new(.:format)                                            api/workouts#new
@@ -68,6 +84,7 @@ durations. Users can log into the web interface by going to:
 ```
 /profile
 ```
+>NOTE: This does not include a UI for single_sets or exercises
 
 ### Front-end Admin Web App
 Admin users have complete control over user resources. Admins can
@@ -133,6 +150,3 @@ given a host. It can be run like this:
 ```
 HOST=http://localhost:3000 bin/basic_test
 ```
-
-
-

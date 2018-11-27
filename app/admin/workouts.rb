@@ -1,17 +1,7 @@
 ActiveAdmin.register Workout do
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:permitted, :attributes]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
-
+  filter :user_email_contains, label: "User Email Contains"
+  filter :workout_date
+  filter :workout_duration
 end
 
 ActiveAdmin.register Workout, namespace: :profile do
@@ -20,6 +10,7 @@ ActiveAdmin.register Workout, namespace: :profile do
   filter :workout_duration
 
   config.clear_action_items!
+  config.paginate = false
 
   action_item :new do
     link_to "New Workout", new_profile_user_workout_path(current_user)
