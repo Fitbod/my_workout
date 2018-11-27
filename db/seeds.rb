@@ -34,6 +34,7 @@ User.all.each do |user|
     CSV.foreach(File.join(SAMPLE_DATA, "single_sets.csv"), headers: true) do |row|
       exercise = exercises[row["Exercise"]] ||= Exercise.find_or_create_by(name: row["Exercise"])
       performed_at_offset += 1
+      next if rand < 0.3 # only have so much room in the free pg database
       SingleSet.create(workout: workout,
                        reps: row["Reps"],
                        weight: row["Weight"],
