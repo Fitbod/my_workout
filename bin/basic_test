@@ -2,8 +2,8 @@
 
 HOST=${HOST:-https://my-workout-turtle.herokuapp.com}
 USER=user1@fitbod.me
-# read -sp 'PASSWORD: ' PASSWORD
-PASSWORD=workfit
+read -sp 'PASSWORD: ' PASSWORD
+
 echo
 request () {
     curl -i \
