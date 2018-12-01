@@ -1,4 +1,5 @@
 ActiveAdmin.register Exercise do
+  filter :name
 end
 
 ActiveAdmin.register Exercise, namespace: :api do

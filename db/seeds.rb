@@ -36,6 +36,7 @@ User.all.each do |user|
       performed_at_offset += 1
       next unless rand < 0.5 # only have so much room in the free pg database
       SingleSet.create(workout: workout,
+                       exercise: exercise,
                        reps: row["Reps"],
                        weight: row["Weight"],
                        performed_at: workout_start_time + performed_at_offset.minutes)
