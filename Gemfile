@@ -31,6 +31,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# CORS
+gem 'rack-cors'
+
 gem 'activeadmin'
 gem 'arctic_admin'
 gem 'formadmin'
