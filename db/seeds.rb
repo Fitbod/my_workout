@@ -19,11 +19,11 @@ exercises = {  }
 CSV.foreach(File.join(SAMPLE_DATA, "user.csv"), headers: true) do |row|
   email = row["Email"]
   unless User.where(email: email).first
-    users[email] ||= User.create!(email: email,
+    user = users[email] ||= User.create!(email: email,
                                   password: Rails.application.credentials.default_password,
                                   password_confirmation: Rails.application.credentials.default_password)
     CSV.foreach(File.join(SAMPLE_DATA, "workout.csv"), headers: true) do |row|
-      Workout.create!(user: users[row["Email Address"]], workout_date: row["Workout Date"], workout_duration: row["Workout Duration"])
+      Workout.create!(user: users[email], workout_date: row["Workout Date"], workout_duration: row["Workout Duration"])
     end
     user.workouts.each do |workout|
       workout_start_time = rand(workout.workout_date.beginning_of_day..(workout.workout_date.end_of_day - 4.hours))
@@ -54,16 +54,15 @@ workouts = {  }
 performed_at_offset = nil
 workout_start_time = nil
 CSV.foreach(File.join(SAMPLE_DATA, "actual.csv"), headers: true) do |row|
-  unless workouts[row["workoutId"]]
-    workout = workouts[row["workoutId"]] = Workout.create!(user: user7, workout_date: row["workoutDate"])
+  workout = workouts[row["workoutId"]] ||= Workout.create!(user: user7, workout_date: row["workoutDate"]).tap do |workout|
     workout_start_time = rand(workout.workout_date.beginning_of_day..(workout.workout_date.end_of_day - 4.hours))
     performed_at_offset = 0
   end
   exercise = exercises[row["exerciseName"]] ||= Exercise.find_or_create_by(name: row["exerciseName"])
   performed_at_offset += 1
-  SingleSet.create(workout: workout,
-                   exercise: exercise,
-                   reps: row["reps"],
-                   weight: row["weight"],
-                   performed_at: workout_start_time + performed_at_offset.minutes)
+  SingleSet.create!(workout: workout,
+                    exercise: exercise,
+                    reps: row["reps"],
+                    weight: row["weight"],
+                    performed_at: workout_start_time + performed_at_offset.minutes)
 end
