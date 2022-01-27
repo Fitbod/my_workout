@@ -3,7 +3,7 @@ ActiveAdmin.register_page "Home", namespace: false do
     h1 do
       "Welcome"
     end
-    a "README", href: "https://github.com/sideshowbandana/my_workout#my-workout", target: :blank
+    a "README", href: "https://github.com/fitbod/my_workout#my-workout", target: :blank
   end
   controller do
     skip_before_action :authenticate_active_admin_user

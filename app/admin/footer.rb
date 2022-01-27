@@ -8,7 +8,7 @@ module ActiveAdmin
 
         div do
           small "Built by: "
-          a "sideshowbandana", href: "https://github.com/sideshowbandana/"
+          a "fitbod", href: "https://github.com/fitbod/"
         end
       end
     end
