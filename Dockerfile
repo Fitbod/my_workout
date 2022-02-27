@@ -32,6 +32,6 @@ COPY . /app
 
 
 EXPOSE 3000
-ENTRYPOINT /scripts/entrypoint.sh
+ENTRYPOINT ./scripts/entrypoint.sh
 
 CMD ["/bin/bash"]
