@@ -22,6 +22,9 @@ test:
 
 production:
   adapter: postgresql
+  host: <%= ENV["POSTGRES_HOST"] || "localhost" %>
+  username: <%= ENV["POSTGRES_USER"] || "postgres" %>
+  password: <%= ENV["POSTGRES_PW"] %>
   database: my_workout_production
   pool: 5
   timeout: 5000
