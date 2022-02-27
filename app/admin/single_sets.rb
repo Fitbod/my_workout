@@ -7,7 +7,7 @@ end
 
 
 ActiveAdmin.register SingleSet, namespace: :api do
-  permit_params :reps, :weight, :performed_at
+  permit_params :reps, :weight, :performed_at, :exercise_id, :workout_id
 
   config.paginate = false
 
