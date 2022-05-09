@@ -1,4 +1,4 @@
-FROM ruby:2.7.5
+FROM ruby:2.7.6
 # as build
 
 
@@ -19,7 +19,7 @@ COPY Gemfile Gemfile.lock /app/
 COPY ./scripts/bundle.sh /scripts/bundle.sh
 RUN /scripts/bundle.sh
 
-# FROM ruby:2.7.5
+# FROM ruby:2.7.6
 
 #COPY --from=build /usr/local/bundle/ /usr/local/bundle/
 #COPY --from=build /app/vendor/bundle/ /app/vendor/bundle/
